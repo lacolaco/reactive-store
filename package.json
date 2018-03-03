@@ -1,0 +1,32 @@
+{
+  "name": "@lacolaco/store",
+  "description": "A minimal implementation of state management",
+  "version": "2.0.4",
+  "license": "MIT",
+  "repository": "https://github.com/lacolaco/observable-store.git",
+  "private": false,
+  "scripts": {
+    "test": "ngc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js",
+    "build": "microbundle build -f es,cjs --external 'all'"
+  },
+  "source": "index.ts",
+  "main": "bundles/lacolaco-store.js",
+  "module": "dist-esm5/lacolaco-store.js",
+  "es2015": "dist-esm2015/lacolaco-store.js",
+  "typings": "lacolaco-store.d.ts",
+  "peerDependencies": {
+    "rxjs": "^5.5.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^9.4.4",
+    "jasmine": "^3.0.0",
+    "microbundle": "0.4.3",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
+    "rxjs": "^5.5.6",
+    "typescript": "~2.5.0"
+  }
+}
