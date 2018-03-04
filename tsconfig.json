@@ -1,8 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "target": "es5",
+    "module": "umd",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,

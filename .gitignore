@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/bundles
 
 # dependencies
 /node_modules
@@ -30,9 +31,10 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
-.ng_pkg_build
+.rpt2_cache
 
 # System Files
 .DS_Store
