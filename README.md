@@ -1,13 +1,13 @@
-# @lacolaco/store
+# @lacolaco/observable-state
 
 A store implementation for state management with RxJS
 
-https://yarn.pm/@lacolaco/store
+https://yarn.pm/@lacolaco/observable-state
 
 ## Install
 
 ```
-$ npm i @lacolaco/store rxjs
+$ npm i @lacolaco/observable-state rxjs
 ```
 
 ## Concept
@@ -25,7 +25,7 @@ $ npm i @lacolaco/store rxjs
 ### Create a store
 
 ```ts
-import { Store } from '@lacolaco/store';
+import { Store } from '@lacolaco/observable-state';
 
 const store: Store<string> = new Store('initialState');
 assert.ok(store.getValue() === 'initialState');
@@ -37,7 +37,7 @@ assert.ok(store.getValue() === 'updated!');
 ### Subscribe state's observable
 
 ```ts
-import { Store } from '@lacolaco/store';
+import { Store } from '@lacolaco/observable-state';
 
 const store: Store<string> = new Store('initialState');
 
@@ -51,7 +51,7 @@ store.dispatch(state => 'updated!');
 ### Select a scoped state
 
 ```ts
-import { Store } from '@lacolaco/store';
+import { Store } from '@lacolaco/observable-state';
 
 const store: Store<{count: number}> = new Store({count: 0});
 
@@ -70,7 +70,7 @@ store.dispatch(state => {
 ### Middleware: Intercept dispatching
 
 ```ts
-import { Store, StateHandler, Middleware } from '@lacolaco/store';
+import { Store, StateHandler, Middleware } from '@lacolaco/observable-state';
 
 const loggingMiddleware: Middleware = (next: StateHandler): StateHandler => {
     return (state: any) => {
