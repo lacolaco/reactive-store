@@ -5,12 +5,16 @@
     "outDir": "./out-tsc",
     "module": "commonjs",
     "target": "es2015",
+    "declaration": false,
+    "strict": false,
     "types": [
       "jasmine",
       "node"
     ]
   },
   "include": [
-    "**/*.ts"
+    "src"
+  ],
+  "exclude": [
   ]
 }

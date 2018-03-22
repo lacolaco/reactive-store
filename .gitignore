@@ -39,3 +39,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Build results
+index.js
+index.esm.js
+*.d.ts

@@ -13,7 +13,7 @@ export class Store<T> extends BehaviorSubject<T> {
   constructor(initialState: T, middlewares: Middleware[] = []) {
     const handler = middlewares.reduceRight(
       (next: StateHandler, middleware: Middleware) => middleware(next),
-      state => state,
+      (state: any) => state,
     );
     super(handler(initialState));
     this.handler = handler;

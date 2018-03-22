@@ -3,30 +3,33 @@
   "description": "A minimal implementation of state management",
   "version": "2.0.4",
   "license": "MIT",
-  "repository": "https://github.com/lacolaco/observable-store.git",
+  "repository": "https://github.com/lacolaco/observable-state.git",
   "private": false,
   "scripts": {
-    "test": "ngc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js",
-    "build": "microbundle build --external 'all'"
+    "test": "run-p 'spec' 'lint'",
+    "build": "rollup -c",
+    "format": "prettier --write 'src/**/*.ts'",
+    "lint": "tslint -p tslint.json && prettier --list-different 'src/**/*.ts'",
+    "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc"
   },
-  "source": "index.ts",
-  "main": "dist/lacolaco-store.js",
-  "umd:main": "dist/lacolaco-store.umd.js",
-  "module": "dist/lacolaco-store.esm.js",
-  "typings": "lacolaco-store.d.ts",
+  "main": "index.js",
+  "module": "index.esm.js",
+  "typings": "index.d.ts",
   "peerDependencies": {
     "rxjs": "^5.5.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.4.4",
     "jasmine": "^3.0.0",
-    "microbundle": "0.4.4",
     "npm-run-all": "^4.1.2",
+    "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
+    "rollup": "^0.57.1",
+    "rollup-plugin-typescript2": "^0.12.0",
     "rxjs": "^5.5.6",
+    "tslint": "^5.9.1",
     "typescript": "~2.5.0"
   }
 }

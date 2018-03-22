@@ -1,11 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "umd",
+    "target": "es2015",
+    "module": "es2015",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
+    "strict": true,
     "moduleResolution": "node",
     "typeRoots": [
       "node_modules/@types"
@@ -16,7 +17,6 @@
     ]
   },
   "include": [
-    "index.ts",
     "src"
   ],
   "exclude": [
