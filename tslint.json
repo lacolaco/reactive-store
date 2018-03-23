@@ -7,8 +7,7 @@
     "class-name": true,
     "forin": true,
     "import-blacklist": [
-      true,
-      "rxjs"
+      true
     ],
     "interface-over-type-literal": true,
     "member-access": false,

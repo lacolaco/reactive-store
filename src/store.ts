@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export type Select<T, R> = (state: T) => R;
 export type Reduce<T> = (state: T) => T;
