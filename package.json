@@ -10,7 +10,8 @@
     "build": "rollup -c",
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -p tslint.json && prettier --list-different 'src/**/*.ts'",
-    "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc"
+    "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc",
+    "version": "standard-changelog -i CHANGELOG.md && git add ."
   },
   "main": "index.js",
   "module": "index.esm.js",
@@ -29,6 +30,7 @@
     "rollup": "^0.57.1",
     "rollup-plugin-typescript2": "^0.12.0",
     "rxjs": "^5.5.6",
+    "standard-changelog": "^1.0.14",
     "tslint": "^5.9.1",
     "typescript": "~2.5.0"
   }
