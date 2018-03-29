@@ -1,9 +1,9 @@
 {
-  "name": "@lacolaco/observable-state",
+  "name": "@lacolaco/reactive-store",
   "description": "A minimal implementation of state management with RxJS",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/lacolaco/observable-state.git",
+  "repository": "https://github.com/lacolaco/reactive-store.git",
   "private": false,
   "scripts": {
     "test": "run-p 'spec' 'lint'",

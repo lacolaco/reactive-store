@@ -1,29 +1,29 @@
 import { Observable, BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
-export type Select<T, R> = (state: T) => R;
-export type Reduce<T> = (state: T) => T;
-export type StateHandler = (state: any) => any;
-export type Middleware = (next: StateHandler) => StateHandler;
+export type StateHandler<T1, T2> = (state: T1) => T2;
+export type Select<T1, T2> = StateHandler<T1, T2>;
+export type Patch<T> = StateHandler<T, T>;
+export type Middleware = (next: StateHandler<any, any>) => StateHandler<any, any>;
 
 export class Store<T> extends BehaviorSubject<T> {
-  private handler: StateHandler;
+  private middleware: StateHandler<T, T>;
 
   constructor(initialState: T, middlewares: Middleware[] = []) {
-    const handler = middlewares.reduceRight(
-      (next: StateHandler, middleware: Middleware) => middleware(next),
+    const middleware = middlewares.reduceRight(
+      (next: StateHandler<any, any>, m: Middleware) => m(next),
       (state: any) => state,
     );
-    super(handler(initialState));
-    this.handler = handler;
+    super(middleware(initialState));
+    this.middleware = middleware;
   }
 
   // @override
   next(value: T): void {
-    super.next(this.handler(value));
+    super.next(this.middleware(value));
   }
 
-  dispatch(fn: Reduce<T>): void {
+  patch(fn: Patch<T>): void {
     this.next(fn(this.getValue()));
   }
 
