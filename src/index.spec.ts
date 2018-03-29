@@ -6,7 +6,7 @@ describe('Store', () => {
       const store = new Store(1);
       expect(store).toBeDefined();
       expect(store.getValue).toBeDefined();
-      expect(store.dispatch).toBeDefined();
+      expect(store.patch).toBeDefined();
       expect(store.subscribe).toBeDefined();
       expect(store.select).toBeDefined();
     });
@@ -20,10 +20,10 @@ describe('Store', () => {
     });
   });
 
-  describe('dispatch', () => {
+  describe('patch', () => {
     it('should be able to reduce state', () => {
       const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.dispatch(state => ({
+      store.patch(state => ({
         ...state,
         foo: '1',
       }));
@@ -34,7 +34,7 @@ describe('Store', () => {
   describe('subscribe', () => {
     it('should be able to be subscribe', done => {
       const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.dispatch(state => ({
+      store.patch(state => ({
         ...state,
         foo: '1',
       }));
@@ -48,7 +48,7 @@ describe('Store', () => {
   describe('select', () => {
     it('should return a selected observalbe', done => {
       const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.dispatch(state => ({ ...state, foo: 'updated' }));
+      store.patch(state => ({ ...state, foo: 'updated' }));
       store.select(state => state.foo).subscribe(foo => {
         expect(foo).toEqual('updated');
         done();
@@ -82,8 +82,8 @@ describe('Store', () => {
         },
       ]);
       // initialState: 1 => 2 => 3
-      store.dispatch(state => 2); // 2 => 4 => 5
-      store.dispatch(state => 3); // 3 => 6 => 7
+      store.patch(state => 2); // 2 => 4 => 5
+      store.patch(state => 3); // 3 => 6 => 7
       expect(log).toEqual([3, 5, 7]);
     });
   });
