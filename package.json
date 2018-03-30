@@ -7,15 +7,19 @@
   "private": false,
   "scripts": {
     "test": "run-p 'spec' 'lint'",
-    "build": "rollup -c",
+    "build": "run-p 'tsc:*'",
+    "tsc:main": "tsc -p tsconfig.json",
+    "tsc:esm5": "tsc -p tsconfig.esm5.json",
+    "tsc:esm2015": "tsc -p tsconfig.esm2015.json",
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -p tslint.json && prettier --list-different 'src/**/*.ts'",
     "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc",
     "version": "standard-changelog -i CHANGELOG.md && git add ."
   },
-  "main": "index.js",
-  "module": "index.esm.js",
-  "typings": "index.d.ts",
+  "main": "dist/index.js",
+  "module": "esm5/index.js",
+  "es2015": "esm2015/index.js",
+  "typings": "dist/index.d.ts",
   "peerDependencies": {
     "rxjs": "^6.0.0"
   },

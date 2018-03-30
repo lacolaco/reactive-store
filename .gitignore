@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bundles
+/esm5
+/esm2015
 
 # dependencies
 /node_modules
@@ -39,8 +41,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# Build results
-index.js
-index.esm.js
-*.d.ts
