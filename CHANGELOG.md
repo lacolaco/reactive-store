@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/lacolaco/reactive-store/compare/v2.0.0...v2.0.1) (2018-03-30)
+
+
+### Bug Fixes
+
+* correct build artifact ([e58a958](https://github.com/lacolaco/reactive-store/commit/e58a958))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/lacolaco/reactive-store/compare/v1.0.0...v2.0.0) (2018-03-29)
 
