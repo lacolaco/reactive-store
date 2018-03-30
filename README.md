@@ -19,7 +19,7 @@ $ npm i rxjs @lacolaco/reactive-store
 
 ## Adapters
 
-* ~Angular: [@lacolaco/ngx-store](https://github.com/lacolaco/ngx/tree/master/libs/ngx-store)~
+* Angular: [@lacolaco/ngx-store](https://github.com/lacolaco/ngx/tree/master/libs/ngx-store) (v4.0.0+)
 
 ## How to Use
 
