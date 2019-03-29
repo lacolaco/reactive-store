@@ -1,35 +1,40 @@
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { StoreOnUpdateFn, StoreInitOptions, CommandOptions } from './types';
 
-export type StateHandler<T1, T2> = (state: T1) => T2;
-export type Select<T1, T2> = StateHandler<T1, T2>;
-export type Patch<T> = StateHandler<T, T>;
-export type Middleware = (next: StateHandler<any, any>) => StateHandler<any, any>;
+export class Store<T> {
+  private readonly subject: BehaviorSubject<T>;
+  private readonly onUpdate?: StoreOnUpdateFn<T>;
 
-export class Store<T> extends BehaviorSubject<T> {
-  private middleware: StateHandler<T, T>;
-
-  constructor(initialState: T, middlewares: Middleware[] = []) {
-    const middleware = middlewares.reduceRight(
-      (next: StateHandler<any, any>, m: Middleware) => m(next),
-      (state: any) => state,
-    );
-    super(middleware(initialState));
-    this.middleware = middleware;
+  get valueChanges(): Observable<T> {
+    return this.subject.asObservable();
   }
 
-  // @override
-  next(value: T): void {
-    super.next(this.middleware(value));
+  get value(): T {
+    return this.subject.getValue();
   }
 
-  patch(fn: Patch<T>): void {
-    this.next(fn(this.getValue()));
+  constructor(initOptions: StoreInitOptions<T>) {
+    this.subject = new BehaviorSubject(initOptions.initialValue);
+    this.onUpdate = initOptions.onUpdate;
   }
 
-  select<R>(fn: Select<T, R>): Observable<R> {
-    return this.pipe(
-      map(fn),
+  update(command: (state: T) => T, options: CommandOptions = {}) {
+    const currentValue = this.subject.getValue();
+    const newValue = command(currentValue);
+    this.subject.next(newValue);
+    if (typeof this.onUpdate === 'function') {
+      this.onUpdate({
+        previousValue: currentValue,
+        currentValue: newValue,
+        label: options.label,
+      });
+    }
+  }
+
+  select<V>(selectFn: (state: T) => V): Observable<V> {
+    return this.subject.pipe(
+      map(selectFn),
       distinctUntilChanged(),
     );
   }

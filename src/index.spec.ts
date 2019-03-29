@@ -3,52 +3,52 @@ import { Store } from './store';
 describe('Store', () => {
   describe('constructor', () => {
     it('creates a new instance', () => {
-      const store = new Store(1);
+      const store = new Store({ initialValue: 1 });
       expect(store).toBeDefined();
-      expect(store.getValue).toBeDefined();
-      expect(store.patch).toBeDefined();
-      expect(store.subscribe).toBeDefined();
+      expect(store.value).toBeDefined();
+      expect(store.update).toBeDefined();
+      expect(store.valueChanges).toBeDefined();
       expect(store.select).toBeDefined();
     });
   });
 
-  describe('getValue', () => {
+  describe('.value', () => {
     it('should return a state', () => {
-      const store = new Store(1);
-      const state = store.getValue();
+      const store = new Store({ initialValue: 1 });
+      const state = store.value;
       expect(state).toEqual(1);
     });
   });
 
-  describe('patch', () => {
+  describe('.update', () => {
     it('should be able to reduce state', () => {
-      const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.patch(state => ({
+      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      store.update(state => ({
         ...state,
         foo: '1',
       }));
-      expect(store.getValue().foo).toEqual('1');
+      expect(store.value.foo).toEqual('1');
     });
   });
 
-  describe('subscribe', () => {
+  describe('.valueChanges', () => {
     it('should be able to be subscribe', done => {
-      const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.patch(state => ({
+      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      store.update(state => ({
         ...state,
         foo: '1',
       }));
-      store.subscribe(state => {
+      store.valueChanges.subscribe(state => {
         expect(state.foo).toEqual('1');
         done();
       });
     });
   });
 
-  describe('select', () => {
+  describe('.select', () => {
     it('should return a selected observalbe', done => {
-      const store = new Store({ foo: null, bar: { baz: 100 } });
-      store.patch(state => ({ ...state, foo: 'updated' }));
+      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      store.update(state => ({ ...state, foo: 'updated' }));
       store
         .select(state => state.foo)
         .subscribe(foo => {
@@ -58,35 +58,18 @@ describe('Store', () => {
     });
   });
 
-  describe('middleware', () => {
-    it('should intercept to dispatching', () => {
-      const log = [];
-      const store = new Store(1, [
-        // modify state pre-dispatch (earlier)
-        next => {
-          return state => {
-            return next(state * 2);
-          };
+  describe('onChange', () => {
+    it('should intercept to dispatching', done => {
+      const store = new Store({
+        initialValue: 1,
+        onUpdate: change => {
+          expect(change.previousValue).toBe(1);
+          expect(change.currentValue).toBe(2);
+          expect(change.label).toBe('test');
+          done();
         },
-        // modify state pre-dispatch (later)
-        next => {
-          return state => {
-            return next(state + 1);
-          };
-        },
-        // logging after post-dispatch
-        next => {
-          return state => {
-            state = next(state);
-            log.push(state);
-            return state;
-          };
-        },
-      ]);
-      // initialState: 1 => 2 => 3
-      store.patch(state => 2); // 2 => 4 => 5
-      store.patch(state => 3); // 3 => 6 => 7
-      expect(log).toEqual([3, 5, 7]);
+      });
+      store.update(state => 2, { label: 'test' });
     });
   });
 });
