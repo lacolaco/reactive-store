@@ -6,5 +6,6 @@ yarn-error.log
 src
 tsconfig.*
 prettier.config.js
+jest.config.js
 tslint.json
 renovate.json
