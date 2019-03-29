@@ -2,24 +2,22 @@
 # 3.0.0 (2019-03-29)
 
 
-### Bug Fixes
-
-* correct build artifact ([e58a958](https://github.com/lacolaco/reactive-store/commit/e58a958))
-
-
 ### Features
 
-* api-v2 ([db8fa24](https://github.com/lacolaco/reactive-store/commit/db8fa24))
 * implement v3 ([a39cb97](https://github.com/lacolaco/reactive-store/commit/a39cb97))
-* update Rx to v6 ([c8f9e1a](https://github.com/lacolaco/reactive-store/commit/c8f9e1a))
 
 
 ### BREAKING CHANGES
 
-* - package name -> reactive-store
-- dispatch -> patch
+All of APIs changed. 
 
+- `Store` is not a Observable now. Use `store.valueChanges` or `store.select()`.
+- `.value` instead of `.getValue()`.
+- `.update()` instead of `patch()`.
+- Middleware system is gone. Only `onChange` event hook is available.
 
+Please read README.md at first.
+ 
 
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/lacolaco/reactive-store/compare/v2.0.0...v2.0.1) (2018-03-30)
