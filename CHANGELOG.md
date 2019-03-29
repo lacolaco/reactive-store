@@ -11,7 +11,7 @@
 
 All of APIs changed. 
 
-- `Store` is not a Observable now. Use `store.valueChanges` or `store.select()`.
+- `Store` is not an Observable now. Use `store.valueChanges` or `store.select()`.
 - `.value` instead of `.getValue()`.
 - `.update()` instead of `patch()`.
 - Middleware system is gone. Only `onChange` event hook is available.
