@@ -28,6 +28,9 @@ export class Store<T> extends BehaviorSubject<T> {
   }
 
   select<R>(fn: Select<T, R>): Observable<R> {
-    return this.pipe(map(fn), distinctUntilChanged());
+    return this.pipe(
+      map(fn),
+      distinctUntilChanged(),
+    );
   }
 }

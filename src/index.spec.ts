@@ -49,10 +49,12 @@ describe('Store', () => {
     it('should return a selected observalbe', done => {
       const store = new Store({ foo: null, bar: { baz: 100 } });
       store.patch(state => ({ ...state, foo: 'updated' }));
-      store.select(state => state.foo).subscribe(foo => {
-        expect(foo).toEqual('updated');
-        done();
-      });
+      store
+        .select(state => state.foo)
+        .subscribe(foo => {
+          expect(foo).toEqual('updated');
+          done();
+        });
     });
   });
 
