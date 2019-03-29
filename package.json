@@ -14,7 +14,8 @@
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -p tslint.json && prettier --list-different 'src/**/*.ts'",
     "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc",
-    "version": "standard-changelog -i CHANGELOG.md && git add ."
+    "version": "standard-changelog -i CHANGELOG.md && git add .",
+    "preversion": "yarn build"
   },
   "main": "dist/index.js",
   "module": "esm5/index.js",
