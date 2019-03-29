@@ -1,3 +1,24 @@
+<a name="3.0.0"></a>
+# 3.0.0 (2019-03-29)
+
+
+### Features
+
+* implement v3 ([a39cb97](https://github.com/lacolaco/reactive-store/commit/a39cb97))
+
+
+### BREAKING CHANGES
+
+All of APIs changed. 
+
+- `Store` is not an Observable now. Use `store.valueChanges` or `store.select()`.
+- `.value` instead of `.getValue()`.
+- `.update()` instead of `patch()`.
+- Middleware system is gone. Only `onChange` event hook is available.
+
+Please read README.md at first.
+ 
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/lacolaco/reactive-store/compare/v2.0.0...v2.0.1) (2018-03-30)
 
