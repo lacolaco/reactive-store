@@ -123,7 +123,27 @@ export const counterStore = new Store<CounterState>({ initialValue: 1 });
 counterStore.update(value => value + 1, { label: 'increment' });
 ```
 
-## Advanced Usage
+## Integration
+
+### Use with immer
+
+[immer](https://github.com/mweststrate/immer) is a library to work with immutable state in a more convenient way.
+You can use immer intuitively with `Store#update`.
+
+```ts
+import { Store } from '@lacolaco/reactive-store';
+import produce from 'immer';
+
+const store = new Store({
+  initialValue: { count: 0 },
+});
+
+store.update(produce(draft => {
+  draft.count = 5; // mutate draft directly
+}));
+
+console.log(store.value); // => 5
+```
 
 ### Use in Angular
 
