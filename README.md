@@ -65,7 +65,7 @@ counterStore.valueChanges.subscribe(value => {
 const doubled$: Observable<number> = counterStore.valueChanges.pipe(map(value => value * 2));
 ```
 
-#### Update the store: `update((state: T) => T): void`
+#### Update the store: `.update((value: T) => T): void`
 
 `update` takes a function which takes the current value and returns a new value.
 
@@ -77,7 +77,7 @@ counterStore.update(value => value + 1);
 console.log(counterStore.value); // => 2
 ```
 
-#### Observe scoped value: `.select((state: T) => U): Observable<U>`
+#### Observe scoped value: `.select((value: T) => U): Observable<U>`
 
 `select` method is for mapping and memoize the scoped value.
 This is using internally it uses RxJS's `map` and `distinctUntilChanged` operators.
@@ -102,7 +102,7 @@ selected$.subscribe(value => {
 
 #### Listen onChange event
 
-A store dispatchs an event when its state has been updated.
+A store dispatchs an event every time updating the store.
 
 ```ts
 const counterStore = new Store<CounterState>({
@@ -166,7 +166,13 @@ export class AppComponent implements OnInit {
   }
 
   incrementCount() {
-    this.counterStore.update(value => ({ ...value, count: value.count + 1 }), { label: 'increment' });
+    this.counterStore.update(
+      value => ({
+        ...value,
+        count: value.count + 1,
+      }),
+      { label: 'increment' },
+    );
   }
 }
 ```
