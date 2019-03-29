@@ -12,7 +12,7 @@ describe('integration specs', () => {
       });
     });
 
-    it('should work well with `produce`', () => {
+    test('should work well with `produce`', () => {
       store.update(value =>
         produce(value, draft => {
           draft.count = 5;
@@ -21,7 +21,7 @@ describe('integration specs', () => {
       expect(store.value.count).toBe(5);
     });
 
-    it('should work well with curried `produce`', () => {
+    test('should work well with curried `produce`', () => {
       store.update(
         produce(draft => {
           draft.count = 5;

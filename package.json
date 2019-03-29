@@ -6,14 +6,14 @@
   "repository": "https://github.com/lacolaco/reactive-store.git",
   "private": false,
   "scripts": {
-    "test": "run-p 'spec' 'lint'",
+    "test": "jest --watch",
+    "test:ci": "jest",
     "build": "run-p 'tsc:*'",
     "tsc:main": "tsc -p tsconfig.json",
     "tsc:esm5": "tsc -p tsconfig.esm5.json",
     "tsc:esm2015": "tsc -p tsconfig.esm2015.json",
     "format": "prettier --write 'src/**/*.ts'",
-    "lint": "tslint -p tslint.json && prettier --list-different 'src/**/*.ts'",
-    "spec": "tsc -p tsconfig.spec.json && jasmine out-tsc/**/*.spec.js && rimraf out-tsc",
+    "lint": "tslint -p tslint.json && prettier --check 'src/**/*.ts'",
     "version": "standard-changelog -i CHANGELOG.md && git add .",
     "prepublishOnly": "yarn build"
   },
@@ -26,15 +26,16 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jasmine": "2.8.16",
+    "@types/jest": "^24.0.11",
     "@types/node": "9.6.47",
     "immer": "2.1.4",
-    "jasmine": "3.3.1",
+    "jest": "^24.5.0",
     "npm-run-all": "4.1.5",
     "prettier": "1.16.4",
     "rimraf": "2.6.3",
     "rxjs": "6.4.0",
     "standard-changelog": "1.0.19",
+    "ts-jest": "^24.0.0",
     "tslint": "5.14.0",
     "typescript": "3.3.4000"
   }

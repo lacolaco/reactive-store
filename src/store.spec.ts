@@ -2,7 +2,7 @@ import { Store } from './store';
 
 describe('Store', () => {
   describe('constructor', () => {
-    it('creates a new instance', () => {
+    test('creates a new instance', () => {
       const store = new Store({ initialValue: 1 });
       expect(store).toBeDefined();
       expect(store.value).toBeDefined();
@@ -13,7 +13,7 @@ describe('Store', () => {
   });
 
   describe('.value', () => {
-    it('should return a state', () => {
+    test('should return a state', () => {
       const store = new Store({ initialValue: 1 });
       const state = store.value;
       expect(state).toEqual(1);
@@ -21,7 +21,7 @@ describe('Store', () => {
   });
 
   describe('.update', () => {
-    it('should be able to reduce state', () => {
+    test('should be able to reduce state', () => {
       const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
       store.update(state => ({
         ...state,
@@ -32,7 +32,7 @@ describe('Store', () => {
   });
 
   describe('.valueChanges', () => {
-    it('should be able to be subscribe', done => {
+    test('should be able to be subscribe', done => {
       const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
       store.update(state => ({
         ...state,
@@ -46,7 +46,7 @@ describe('Store', () => {
   });
 
   describe('.select', () => {
-    it('should return a selected observalbe', done => {
+    test('should return a selected observalbe', done => {
       const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
       store.update(state => ({ ...state, foo: 'updated' }));
       store
@@ -59,7 +59,7 @@ describe('Store', () => {
   });
 
   describe('onChange', () => {
-    it('should intercept to dispatching', done => {
+    test('should intercept to dispatching', done => {
       const store = new Store({
         initialValue: 1,
         onUpdate: change => {
