@@ -14,7 +14,7 @@
     "tsc:esm2015": "tsc -p tsconfig.esm2015.json",
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -p tslint.json && prettier --check 'src/**/*.ts'",
-    "version": "standard-changelog -i CHANGELOG.md && git add .",
+    "release": "standard-version",
     "prepublishOnly": "yarn build"
   },
   "main": "dist/index.js",
@@ -34,7 +34,7 @@
     "prettier": "1.16.4",
     "rimraf": "2.6.3",
     "rxjs": "6.4.0",
-    "standard-changelog": "1.0.19",
+    "standard-version": "^5.0.2",
     "ts-jest": "^24.0.0",
     "tslint": "5.14.0",
     "typescript": "3.3.4000"
