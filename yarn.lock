@@ -1759,10 +1759,10 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-immer@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.5.tgz#0389947455c5a2c7a47f1e6f415c9d1a62a1ebed"
-  integrity sha512-xyjQyTBYIeiz6jd02Hg12jV+9QISwF1crLcwTlzHpWH4e0ryNWj1kacpTwimK3bJV5NKKXw458G2vpqoB/inFA==
+immer@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-2.2.0.tgz#638efd0290145298a8307fba39539c0b3d6b60c0"
+  integrity sha512-35P92n2X7JI29Wame0Ts5vrACU2G0HSjCz1Yhpz+FTw86jt9nJKOpeiGw43Gpu8OryGB6dZWGFRy58zITzRnPQ==
 
 import-local@^2.0.0:
   version "2.0.0"
