@@ -9,3 +9,5 @@ prettier.config.js
 jest.config.js
 tslint.json
 renovate.json
+coverage
+yarn.lock
