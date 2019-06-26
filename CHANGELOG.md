@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/lacolaco/reactive-store/compare/v3.1.1...v3.1.2) (2019-06-26)
+
+
+### Bug Fixes
+
+* **redux-devtools:** use single devtools connection ([#53](https://github.com/lacolaco/reactive-store/issues/53)) ([59a2a4d](https://github.com/lacolaco/reactive-store/commit/59a2a4d))
+
+
+
 ### [3.1.1](https://github.com/lacolaco/reactive-store/compare/v3.1.0...v3.1.1) (2019-06-26)
 
 
