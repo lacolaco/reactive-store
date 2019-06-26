@@ -4,6 +4,7 @@ node_modules
 yarn-error.log
 
 src
+examples
 tsconfig.*
 prettier.config.js
 jest.config.js
