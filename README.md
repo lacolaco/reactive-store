@@ -98,20 +98,20 @@ selected$.subscribe(value => {
 });
 ```
 
-### Store Options
+#### Listen update events: `.storeUpdateChanges: Observable<StoreUpdateChange<T>>`
 
-#### Listen onChange event
-
-A store dispatchs an event every time updating the store.
+A store dispatchs a change event every time updating the store.
+This is for debugging or integrating with other tools.
 
 ```ts
 const counterStore = new Store<CounterState>({
   initialValue,
-  onUpdate: change => {
-    console.log(`Previous Value`, change.previousValue);
-    console.log(`Current Value`, change.currentValue);
-    console.log(`Label`, change.label);
-  },
+});
+
+counterStore.storeUpdateChanges.subscribe(change => {
+  console.log(`Previous Value`, change.previousValue);
+  console.log(`Current Value`, change.currentValue);
+  console.log(`Label`, change.label);
 });
 ```
 
@@ -128,7 +128,7 @@ counterStore.update(value => value + 1, { label: 'increment' });
 ### Connect Redux Devtools
 
 [Redux Devtools](https://github.com/zalmoxisus/redux-devtools-extension) is an useful browser extension for debugging Redux state management.
-This integration is limited as logging only. _jumping_, _time travelling_, or any operation from the extension is not supported. 
+This integration is limited as logging only. _jumping_, _time travelling_, or any operation from the extension is not supported.
 
 ```ts
 import { Store, connectReduxDevTools } from '@lacolaco/reactive-store';
@@ -153,9 +153,11 @@ const store = new Store({
   initialValue: { count: 0 },
 });
 
-store.update(produce(draft => {
-  draft.count = 5; // mutate draft directly
-}));
+store.update(
+  produce(draft => {
+    draft.count = 5; // mutate draft directly
+  }),
+);
 
 console.log(store.value); // => 5
 ```
