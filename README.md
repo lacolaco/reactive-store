@@ -125,6 +125,21 @@ counterStore.update(value => value + 1, { label: 'increment' });
 
 ## Integration
 
+### Connect Redux Devtools
+
+[Redux Devtools](https://github.com/zalmoxisus/redux-devtools-extension) is an useful browser extension for debugging Redux state management.
+This integration is limited as logging only. _jumping_, _time travelling_, or any operation from the extension is not supported. 
+
+```ts
+import { Store, connectReduxDevTools } from '@lacolaco/reactive-store';
+
+const store = new Store({
+  initialValue: { count: 0 },
+});
+
+connectReduxDevTools(store);
+```
+
 ### Use with immer
 
 [immer](https://github.com/mweststrate/immer) is a library to work with immutable state in a more convenient way.
