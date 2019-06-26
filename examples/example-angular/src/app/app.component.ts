@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { increment, reset, count$ } from './counter.store';
+import { setName, name$ } from './greeting.store';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,17 @@ import { increment, reset, count$ } from './counter.store';
       <button (click)="onIncrementClick()">Increment</button>
       <button (click)="onResetClick()">Reset</button>
     </div>
+
+    <div>
+      <div>Hello, {{ name$ | async }}!</div>
+
+      <input [value]="name$ | async" (input)="onNameInput($event.target.value)" />
+    </div>
   `,
 })
 export class AppComponent {
   count$ = count$;
+  name$ = name$;
 
   onIncrementClick() {
     increment();
@@ -22,5 +30,9 @@ export class AppComponent {
 
   onResetClick() {
     reset();
+  }
+
+  onNameInput(name: string) {
+    setName(name);
   }
 }
