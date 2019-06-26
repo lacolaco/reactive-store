@@ -8,11 +8,18 @@ type ReduxDevtools = {
   init(state: any): void;
 };
 
+const extension = (window as any)[globalExtensionSymbol] as any;
+let reduxDevTool: ReduxDevtools;
+
+/**
+ * @experimental
+ */
 export function connectReduxDevTools(store: Store<any>) {
-  const extension = (window as any)[globalExtensionSymbol] as any;
-  if (extension) {
-    const reduxDevTool = extension.connect() as ReduxDevtools;
-    reduxDevTool.init(store.value);
+  if (extension && !reduxDevTool) {
+    reduxDevTool = extension.connect() as ReduxDevtools;
+    reduxDevTool.init({});
+  }
+  if (reduxDevTool) {
     store.storeUpdateChanges.subscribe(change => {
       reduxDevTool.send(change.label || 'Update State', change.currentValue);
     });
