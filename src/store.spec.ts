@@ -72,4 +72,19 @@ describe('Store', () => {
       store.update(state => 2, { label: 'test' });
     });
   });
+
+  describe('storeUpdateChanges', () => {
+    test('should intercept to dispatching', done => {
+      const store = new Store({
+        initialValue: 1,
+      });
+      store.storeUpdateChanges.subscribe(change => {
+        expect(change.previousValue).toBe(1);
+        expect(change.currentValue).toBe(2);
+        expect(change.label).toBe('test');
+        done();
+      });
+      store.update(state => 2, { label: 'test' });
+    });
+  });
 });

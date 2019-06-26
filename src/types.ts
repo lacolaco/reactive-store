@@ -8,6 +8,9 @@ export type StoreOnUpdateFn<T> = (change: StoreUpdateChange<T>) => void;
 
 export type StoreInitOptions<T> = {
   initialValue: T;
+  /**
+   * @deprecated Use `Store#changes` observable. Removal in v5
+   */
   onUpdate?: StoreOnUpdateFn<T>;
 };
 
