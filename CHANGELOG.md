@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file. See [standa
 * add redux devtools integration ([#51](https://github.com/lacolaco/reactive-store/issues/51)) ([4cd5917](https://github.com/lacolaco/reactive-store/commit/4cd5917))
 
 
+### Deprecations
+
+* `new Store({ onUpdate: () => {...} })` configuration is now deprecated. Use `Store#storeUpdateChanges` instead. 
+
+
+## [3.0.3](https://github.com/lacolaco/reactive-store/compare/v3.0.2...v3.0.3) (2019-06-24)
 
 ## [3.0.2](https://github.com/lacolaco/reactive-store/compare/v3.0.1...v3.0.2) (2019-03-29)
 
