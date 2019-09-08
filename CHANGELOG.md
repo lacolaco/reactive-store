@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.1.3](https://github.com/lacolaco/reactive-store/compare/v3.1.2...v3.1.3) (2019-09-08)
 
+* Only dependencies update
+
 ### [3.1.2](https://github.com/lacolaco/reactive-store/compare/v3.1.1...v3.1.2) (2019-06-26)
 
 
