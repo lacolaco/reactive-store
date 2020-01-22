@@ -44,9 +44,6 @@ export class Store<T> {
   }
 
   select<V>(selectFn: (state: T) => V): Observable<V> {
-    return this.valueSubject.pipe(
-      map(selectFn),
-      distinctUntilChanged(),
-    );
+    return this.valueSubject.pipe(map(selectFn), distinctUntilChanged());
   }
 }
