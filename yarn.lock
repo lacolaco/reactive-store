@@ -2010,10 +2010,10 @@ iconv-lite@0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-immer@5.3.3:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-5.3.3.tgz#9964a5b88e54da208e56f22f2cf79f498fed521b"
-  integrity sha512-9fgZqRU5BRPSFmz1oWyIwkWq6mmTWugW4hvMb6OoUa2dgwHrkiJDBpfYcQMj/6v3UPt/ghYY61wFv8Kfy7LZEw==
+immer@5.3.6:
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-5.3.6.tgz#51eab8cbbeb13075fe2244250f221598818cac04"
+  integrity sha512-pqWQ6ozVfNOUDjrLfm4Pt7q4Q12cGw2HUZgry4Q5+Myxu9nmHRkWBpI0J4+MK0AxbdFtdMTwEGVl7Vd+vEiK+A==
 
 import-local@^3.0.2:
   version "3.0.2"
