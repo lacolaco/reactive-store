@@ -20,10 +20,10 @@ export function connectReduxDevTools(store: Store<any>) {
     reduxDevTool.init({});
   }
   if (reduxDevTool) {
-    store.storeUpdateChanges.subscribe(change => {
+    store.storeUpdateChanges.subscribe((change) => {
       reduxDevTool.send(change.label || 'Update State', change.currentValue);
     });
-    reduxDevTool.subscribe(message => {
+    reduxDevTool.subscribe((message) => {
       if (message.state) {
         console.warn(`[@lacolaco/reactive-store] Operation from extension is not supported :(`);
       }

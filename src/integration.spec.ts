@@ -13,8 +13,8 @@ describe('integration specs', () => {
     });
 
     test('should work well with `produce`', () => {
-      store.update(value =>
-        produce(value, draft => {
+      store.update((value) =>
+        produce(value, (draft) => {
           draft.count = 5;
         }),
       );
@@ -23,7 +23,7 @@ describe('integration specs', () => {
 
     test('should work well with curried `produce`', () => {
       store.update(
-        produce(draft => {
+        produce((draft) => {
           draft.count = 5;
         }),
       );
