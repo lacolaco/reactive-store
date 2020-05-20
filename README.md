@@ -222,6 +222,4 @@ MIT
 
 ### Author
 
-Suguru Inatomi a.k.a. lacolaco
-
-Patreon: https://www.patreon.com/lacolaco
+Suguru Inatomi a.k.a. [@lacolaco](https://twitter.com/laco2net)
