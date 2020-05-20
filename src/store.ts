@@ -1,12 +1,11 @@
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { StoreOnUpdateFn, StoreInitOptions, CommandOptions, StoreUpdateChange } from './types';
+import { StoreInitOptions, CommandOptions, StoreUpdateChange } from './types';
 
 export class Store<T> {
   private readonly valueSubject: BehaviorSubject<T>;
   private readonly storeUpdateChangeSubject: Subject<StoreUpdateChange<T>>;
-  private readonly deprecatedOnUpdate?: StoreOnUpdateFn<T>;
-  private readonly initialState: T;
+  private readonly initialValue: T;
 
   get valueChanges(): Observable<T> {
     return this.valueSubject.asObservable();
@@ -23,8 +22,7 @@ export class Store<T> {
   constructor(initOptions: StoreInitOptions<T>) {
     this.valueSubject = new BehaviorSubject(initOptions.initialValue);
     this.storeUpdateChangeSubject = new Subject<StoreUpdateChange<T>>();
-    this.initialState = initOptions.initialValue;
-    this.deprecatedOnUpdate = initOptions.onUpdate;
+    this.initialValue = initOptions.initialValue;
   }
 
   update(command: (state: T) => T, options: CommandOptions = {}) {
@@ -36,13 +34,6 @@ export class Store<T> {
       currentValue,
       label: options.label,
     });
-    if (typeof this.deprecatedOnUpdate === 'function') {
-      this.deprecatedOnUpdate({
-        previousValue,
-        currentValue,
-        label: options.label,
-      });
-    }
   }
 
   select<V>(selectFn: (state: T) => V): Observable<V> {
@@ -50,9 +41,9 @@ export class Store<T> {
   }
 
   /**
-   * Reset to the initial state
+   * Reset to the initial value
    */
   reset(): void {
-    this.update(() => this.initialState);
+    this.update(() => this.initialValue);
   }
 }
