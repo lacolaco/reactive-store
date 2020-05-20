@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* use storeUpdateChanges and connect events to your devtools manually
-* use storeUpdateChanges instead
+* Built-in redux-devtools integration has been removed. Use storeUpdateChanges and connect events to your devtools manually
+* `onChange` init option has been removed. Use storeUpdateChanges instead
 
 ### Features
 
