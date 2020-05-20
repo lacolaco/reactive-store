@@ -1,4 +1,4 @@
-import { Store } from './store';
+import { Store, RESET } from './store';
 
 describe('Store', () => {
   describe('constructor', () => {
@@ -86,6 +86,34 @@ describe('Store', () => {
       }));
       store.reset();
       expect(store.value).toEqual(initialValue);
+    });
+
+    test('should emit RESET change by default', (done) => {
+      const store = new Store({
+        initialValue: 1,
+      });
+      store.update(() => 2);
+      store.storeUpdateChanges.subscribe((change) => {
+        expect(change.previousValue).toBe(2);
+        expect(change.currentValue).toBe(1);
+        expect(change.label).toBe(RESET);
+        done();
+      });
+      store.reset();
+    });
+
+    test('should take command options', (done) => {
+      const store = new Store({
+        initialValue: 1,
+      });
+      store.update(() => 2);
+      store.storeUpdateChanges.subscribe((change) => {
+        expect(change.previousValue).toBe(2);
+        expect(change.currentValue).toBe(1);
+        expect(change.label).toBe('custom-reset');
+        done();
+      });
+      store.reset({ label: 'custom-reset' });
     });
   });
 });

@@ -2,6 +2,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { StoreInitOptions, CommandOptions, StoreUpdateChange } from './types';
 
+export const RESET = 'store/reset';
+
 export class Store<T> {
   private readonly valueSubject: BehaviorSubject<T>;
   private readonly storeUpdateChangeSubject: Subject<StoreUpdateChange<T>>;
@@ -43,7 +45,7 @@ export class Store<T> {
   /**
    * Reset to the initial value
    */
-  reset(): void {
-    this.update(() => this.initialValue);
+  reset(options: CommandOptions = { label: RESET }): void {
+    this.update(() => this.initialValue, options);
   }
 }
