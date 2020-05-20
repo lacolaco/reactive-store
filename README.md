@@ -123,6 +123,16 @@ export const counterStore = new Store<CounterState>({ initialValue: 1 });
 counterStore.update(value => value + 1, { label: 'increment' });
 ```
 
+#### Reset the store: `.reset(): void`
+
+`reset` the store with the initial value.
+
+```ts
+export const counterStore = new Store<CounterState>({ initialValue: 1 });
+
+counterStore.reset();
+```
+
 ## Integration
 
 ### Connect Redux Devtools
