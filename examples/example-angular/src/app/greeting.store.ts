@@ -1,14 +1,12 @@
 import produce from 'immer';
 
-import { Store, connectReduxDevTools } from '@lacolaco/reactive-store';
+import { Store } from '@lacolaco/reactive-store';
 
 const greetingStore = new Store({
   initialValue: {
     name: 'World',
   },
 });
-
-connectReduxDevTools(greetingStore);
 
 export const name$ = greetingStore.select(state => state.name);
 
