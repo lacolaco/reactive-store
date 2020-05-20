@@ -58,21 +58,6 @@ describe('Store', () => {
     });
   });
 
-  describe('onChange', () => {
-    test('should intercept to dispatching', (done) => {
-      const store = new Store({
-        initialValue: 1,
-        onUpdate: (change) => {
-          expect(change.previousValue).toBe(1);
-          expect(change.currentValue).toBe(2);
-          expect(change.label).toBe('test');
-          done();
-        },
-      });
-      store.update((state) => 2, { label: 'test' });
-    });
-  });
-
   describe('storeUpdateChanges', () => {
     test('should intercept to dispatching', (done) => {
       const store = new Store({
@@ -89,7 +74,7 @@ describe('Store', () => {
   });
 
   describe('.reset', () => {
-    test('should be able to reset state', () => {
+    test('should be able to reset the value', () => {
       const initialValue = { foo: null, bar: { baz: 100 } };
       const store = new Store({ initialValue });
       store.update((state) => ({
