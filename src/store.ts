@@ -6,6 +6,7 @@ export class Store<T> {
   private readonly valueSubject: BehaviorSubject<T>;
   private readonly storeUpdateChangeSubject: Subject<StoreUpdateChange<T>>;
   private readonly deprecatedOnUpdate?: StoreOnUpdateFn<T>;
+  private readonly initialState: T;
 
   get valueChanges(): Observable<T> {
     return this.valueSubject.asObservable();
@@ -22,6 +23,7 @@ export class Store<T> {
   constructor(initOptions: StoreInitOptions<T>) {
     this.valueSubject = new BehaviorSubject(initOptions.initialValue);
     this.storeUpdateChangeSubject = new Subject<StoreUpdateChange<T>>();
+    this.initialState = initOptions.initialValue;
     this.deprecatedOnUpdate = initOptions.onUpdate;
   }
 
@@ -45,5 +47,12 @@ export class Store<T> {
 
   select<V>(selectFn: (state: T) => V): Observable<V> {
     return this.valueSubject.pipe(map(selectFn), distinctUntilChanged());
+  }
+
+  /**
+   * Reset to the initial state
+   */
+  reset(): void {
+    this.update(() => this.initialState);
   }
 }

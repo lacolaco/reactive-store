@@ -87,4 +87,20 @@ describe('Store', () => {
       store.update((state) => 2, { label: 'test' });
     });
   });
+
+  describe('.reset', () => {
+    test('should be able to reset state', () => {
+      const initialValue = { foo: null, bar: { baz: 100 } };
+      const store = new Store({ initialValue });
+      store.update((state) => ({
+        ...state,
+        foo: '1',
+        bar: {
+          baz: 1,
+        },
+      }));
+      store.reset();
+      expect(store.value).toEqual(initialValue);
+    });
+  });
 });
