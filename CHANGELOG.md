@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/lacolaco/reactive-store/compare/v3.1.3...v4.0.0) (2020-05-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* use storeUpdateChanges and connect events to your devtools manually
+* use storeUpdateChanges instead
+
+### Features
+
+* add Store#reset() method ([#149](https://github.com/lacolaco/reactive-store/issues/149)) ([0235794](https://github.com/lacolaco/reactive-store/commit/02357946b8980219a46465a70b4d7b99553be7f9))
+* remove deprecated onChange option ([#150](https://github.com/lacolaco/reactive-store/issues/150)) ([b6c7ad0](https://github.com/lacolaco/reactive-store/commit/b6c7ad01b7ded8b46080c3a89414b7a3174dd356))
+* remove redux-devtools integration ([#151](https://github.com/lacolaco/reactive-store/issues/151)) ([a1d18a2](https://github.com/lacolaco/reactive-store/commit/a1d18a21879628ee3cac840d2f955bbb31a4b029))
+
+
+### Bug Fixes
+
+* reset() support custom command options ([4d08725](https://github.com/lacolaco/reactive-store/commit/4d087254a6e6872fd00ad60f9d716a2b830720da))
+
 ### [3.1.3](https://github.com/lacolaco/reactive-store/compare/v3.1.2...v3.1.3) (2019-09-08)
 
 * Only dependencies update
