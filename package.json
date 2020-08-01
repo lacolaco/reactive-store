@@ -27,7 +27,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "26.0.7",
+    "@types/jest": "26.0.8",
     "@types/node": "9.6.57",
     "immer": "7.0.7",
     "jest": "26.2.2",
