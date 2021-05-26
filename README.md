@@ -6,7 +6,7 @@ https://yarn.pm/@lacolaco/reactive-store
 
 [![@lacolaco/reactive-store Dev Token](https://badge.devtoken.rocks/@lacolaco/reactive-store)](https://devtoken.rocks/package/@lacolaco/reactive-store)
 
-[![CircleCI](https://circleci.com/gh/lacolaco/reactive-store.svg?style=svg)](https://circleci.com/gh/lacolaco/reactive-store)
+[![CI](https://github.com/lacolaco/reactive-store/actions/workflows/ci.yml/badge.svg)](https://github.com/lacolaco/reactive-store/actions/workflows/ci.yml)
 
 [![npm version](https://badge.fury.io/js/%40lacolaco%2Freactive-store.svg)](https://badge.fury.io/js/%40lacolaco%2Freactive-store)
 
