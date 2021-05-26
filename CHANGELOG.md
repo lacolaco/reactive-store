@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+See [Releases](https://github.com/lacolaco/reactive-store/releases) for checking change logs. This file is left as just history and will be no longer updated.
 
 ## [4.0.0](https://github.com/lacolaco/reactive-store/compare/v3.1.3...v4.0.0) (2020-05-20)
 
