@@ -27,7 +27,7 @@ export class Store<T> {
     this.initialValue = initOptions.initialValue;
   }
 
-  update(command: (state: T) => T, options: CommandOptions = {}) {
+  update(command: (state: T) => T, options: CommandOptions = {}): void {
     const previousValue = this.valueSubject.getValue();
     const currentValue = command(previousValue);
     this.valueSubject.next(currentValue);
