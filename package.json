@@ -14,7 +14,9 @@
     "tsc:esm5": "tsc -p tsconfig.esm5.json --outDir esm5",
     "tsc:esm2015": "tsc -p tsconfig.esm2015.json --outDir esm2015",
     "format": "prettier --write 'src/**/*.ts'",
-    "lint": "tslint -p tslint.json && prettier --check 'src/**/*.ts'",
+    "format:check": "prettier --check 'src/**/*.ts'",
+    "lint": "yarn lint:eslint && yarn format:check",
+    "lint:eslint": "eslint 'src/**/*.ts'",
     "release": "standard-version",
     "prepublishOnly": "yarn build"
   },
@@ -29,6 +31,10 @@
   "devDependencies": {
     "@types/jest": "26.0.23",
     "@types/node": "14.17.1",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
     "immer": "9.0.2",
     "jest": "26.6.3",
     "npm-run-all": "4.1.5",
@@ -37,7 +43,6 @@
     "rxjs": "6.6.7",
     "standard-version": "9.1.0",
     "ts-jest": "26.5.6",
-    "tslint": "6.1.3",
     "typescript": "4.2.4"
   }
 }

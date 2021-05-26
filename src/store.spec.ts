@@ -69,7 +69,7 @@ describe('Store', () => {
         expect(change.label).toBe('test');
         done();
       });
-      store.update((state) => 2, { label: 'test' });
+      store.update(() => 2, { label: 'test' });
     });
   });
 
