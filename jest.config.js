@@ -7,7 +7,7 @@ module.exports = {
   errorOnDeprecated: true,
   globals: {
     'ts-jest': {
-      tsConfig: path.resolve(__dirname, './tsconfig.spec.json'),
+      tsconfig: path.resolve(__dirname, './tsconfig.spec.json'),
     },
   },
 };
