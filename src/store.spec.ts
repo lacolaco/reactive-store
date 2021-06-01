@@ -22,7 +22,7 @@ describe('Store', () => {
 
   describe('.update', () => {
     test('should be able to reduce state', () => {
-      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      const store = new Store({ initialValue: { foo: '0', bar: { baz: 100 } } });
       store.update((state) => ({
         ...state,
         foo: '1',
@@ -33,7 +33,7 @@ describe('Store', () => {
 
   describe('.valueChanges', () => {
     test('should be able to be subscribe', (done) => {
-      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      const store = new Store({ initialValue: { foo: '0', bar: { baz: 100 } } });
       store.update((state) => ({
         ...state,
         foo: '1',
@@ -47,7 +47,7 @@ describe('Store', () => {
 
   describe('.select', () => {
     test('should return a selected observalbe', (done) => {
-      const store = new Store({ initialValue: { foo: null, bar: { baz: 100 } } });
+      const store = new Store({ initialValue: { foo: '', bar: { baz: 100 } } });
       store.update((state) => ({ ...state, foo: 'updated' }));
       store
         .select((state) => state.foo)
@@ -75,7 +75,7 @@ describe('Store', () => {
 
   describe('.reset', () => {
     test('should be able to reset the value', () => {
-      const initialValue = { foo: null, bar: { baz: 100 } };
+      const initialValue = { foo: '0', bar: { baz: 100 } };
       const store = new Store({ initialValue });
       store.update((state) => ({
         ...state,
