@@ -4,6 +4,7 @@ on: [push]
 
 env:
   CI: true
+  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build:
@@ -13,6 +14,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14.x
+      - uses: actions/cache@v2
+        with:
+          path: ${YARN_CACHE_FOLDER}
+          key: ${{ runner.os }}-yarn-cache-v1
       - run: yarn
       - run: yarn lint
       - run: yarn test:ci
