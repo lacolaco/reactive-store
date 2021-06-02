@@ -1,5 +1,10 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "groupName": "Jest packages",
+      "matchPackageNames": ["jest", "ts-jest"],
+      "enabled": true
+    }
   ]
 }
