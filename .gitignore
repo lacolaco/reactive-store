@@ -5,8 +5,7 @@
 /tmp
 /out-tsc
 /bundles
-/esm5
-/esm2015
+/esm
 
 # dependencies
 /node_modules
