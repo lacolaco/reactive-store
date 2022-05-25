@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { increment, reset, count$ } from './counter.store';
+import * as counterStore from './counter.store';
 
 @Component({
   selector: 'app-counter',
@@ -12,15 +12,16 @@ import { increment, reset, count$ } from './counter.store';
       <button (click)="onResetClick()">Reset</button>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterComponent {
-  count$ = count$;
+  readonly count$ = counterStore.count$;
 
   onIncrementClick() {
-    increment();
+    counterStore.increment();
   }
 
   onResetClick() {
-    reset();
+    counterStore.reset();
   }
 }

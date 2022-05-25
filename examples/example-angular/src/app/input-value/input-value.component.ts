@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@lacolaco/reactive-store';
 
-import { setName, name$ } from './greeting.store';
+const store = new Store({
+  initialValue: { name: 'World' },
+});
 
 @Component({
   selector: 'app-input-value',
@@ -8,14 +11,19 @@ import { setName, name$ } from './greeting.store';
     <div>
       <div>Hello, {{ name$ | async }}!</div>
 
-      <input [value]="name$ | async" #input (input)="onNameInput(input.value)" />
+      <input
+        [value]="name$ | async"
+        #input
+        (input)="onNameInput(input.value)"
+      />
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputValueComponent {
-  name$ = name$;
+  readonly name$ = store.select((state) => state.name);
 
   onNameInput(name: string) {
-    setName(name);
+    store.update((state) => ({ ...state, name }));
   }
 }
