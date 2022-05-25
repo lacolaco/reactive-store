@@ -16,7 +16,7 @@ import { setName, name$ } from './greeting.store';
     <div>
       <div>Hello, {{ name$ | async }}!</div>
 
-      <input [value]="name$ | async" (input)="onNameInput($event.target.value)" />
+      <input [value]="name$ | async" #input (input)="onNameInput(input.value)" />
     </div>
   `,
 })
