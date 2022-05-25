@@ -4,8 +4,6 @@ Very simple store implementation for state management with RxJS.
 
 https://yarn.pm/@lacolaco/reactive-store
 
-[![@lacolaco/reactive-store Dev Token](https://badge.devtoken.rocks/@lacolaco/reactive-store)](https://devtoken.rocks/package/@lacolaco/reactive-store)
-
 [![CI](https://github.com/lacolaco/reactive-store/actions/workflows/ci.yml/badge.svg)](https://github.com/lacolaco/reactive-store/actions/workflows/ci.yml)
 
 [![npm version](https://badge.fury.io/js/%40lacolaco%2Freactive-store.svg)](https://badge.fury.io/js/%40lacolaco%2Freactive-store)
@@ -23,6 +21,9 @@ $ yarn add rxjs @lacolaco/reactive-store
 - Simple: Easy to understand what the library does and doesn't
 
 ## How to Use
+
+- [Stackblitz Demo](https://stackblitz.com/edit/typescript-36dxgn?file=index.ts)
+- [Angular Examples](/examples/example-angular/src/app/examples/)
 
 ### Create a store: `new Store({ initialValue })`
 
@@ -57,12 +58,12 @@ console.log(counterStore.value); // => 1
 ```ts
 export const counterStore = new Store<CounterState>({ initialValue: 1 });
 
-counterStore.valueChanges.subscribe(value => {
+counterStore.valueChanges.subscribe((value) => {
   console.log(value); // => 1
 });
 
 // You can use `pipe` and operators of RxJS.
-const doubled$: Observable<number> = counterStore.valueChanges.pipe(map(value => value * 2));
+const doubled$: Observable<number> = counterStore.valueChanges.pipe(map((value) => value * 2));
 ```
 
 #### Update the store: `.update((value: T) => T): void`
@@ -72,7 +73,7 @@ const doubled$: Observable<number> = counterStore.valueChanges.pipe(map(value =>
 ```ts
 export const counterStore = new Store<CounterState>({ initialValue: 1 });
 
-counterStore.update(value => value + 1);
+counterStore.update((value) => value + 1);
 
 console.log(counterStore.value); // => 2
 ```
@@ -87,13 +88,13 @@ export const counterStore = new Store<CounterState>({
   initialValue: { count: 1 },
 });
 
-counterStore.valueChanges.subscribe(value => {
+counterStore.valueChanges.subscribe((value) => {
   console.log(value); // => { count: 1 }
 });
 
-const selected$: Observable<number> = counterStore.select(value => value.count);
+const selected$: Observable<number> = counterStore.select((value) => value.count);
 
-selected$.subscribe(value => {
+selected$.subscribe((value) => {
   console.log(value); // => 1
 });
 ```
@@ -108,7 +109,7 @@ const counterStore = new Store<CounterState>({
   initialValue,
 });
 
-counterStore.storeUpdateChanges.subscribe(change => {
+counterStore.storeUpdateChanges.subscribe((change) => {
   console.log(`Previous Value`, change.previousValue);
   console.log(`Current Value`, change.currentValue);
   console.log(`Label`, change.label);
@@ -120,7 +121,7 @@ counterStore.storeUpdateChanges.subscribe(change => {
 ```ts
 export const counterStore = new Store<CounterState>({ initialValue: 1 });
 
-counterStore.update(value => value + 1, { label: 'increment' });
+counterStore.update((value) => value + 1, { label: 'increment' });
 ```
 
 #### Reset the store: `.reset(): void`
@@ -131,82 +132,6 @@ counterStore.update(value => value + 1, { label: 'increment' });
 export const counterStore = new Store<CounterState>({ initialValue: 1 });
 
 counterStore.reset();
-```
-
-## Integration Example
-
-### Use with immer
-
-[immer](https://github.com/mweststrate/immer) is a library to work with immutable state in a more convenient way.
-You can use immer intuitively with `Store#update`.
-
-```ts
-import { Store } from '@lacolaco/reactive-store';
-import produce from 'immer';
-
-const store = new Store({
-  initialValue: { count: 0 },
-});
-
-store.update(
-  produce(draft => {
-    draft.count = 5; // mutate draft directly
-  }),
-);
-
-console.log(store.value); // => 5
-```
-
-### Use in Angular
-
-In Angular application, I recommend to creating new store with extending `Store` and provide it for Dependency Injection.
-
-```ts
-// state/counter.store.ts
-import { Injectable } from '@angular/core';
-import { Store } from '@lacolaco/reactive-store';
-
-export interface CounterState {
-  count: number;
-}
-
-export const initialValue: CounterState = {
-  count: 0,
-};
-
-// Or you can use your NgModule's `providers` array to provide this service.
-@Injectable({ providedIn: 'root' })
-export class CounterStore extends Store<CounterState> {
-  constructor() {
-    super({ initialValue });
-  }
-}
-```
-
-```ts
-// app.component.ts
-@Component({
-  selector: 'app-root',
-  template: `
-    <p>Counter: {{ count$ | async }}</p>
-  `,
-})
-export class AppComponent implements OnInit {
-  count$: Observable<number>;
-  constructor(private counterStore: CounterStore) {
-    this.count$ = this.counterStore.select(value => value.count);
-  }
-
-  incrementCount() {
-    this.counterStore.update(
-      value => ({
-        ...value,
-        count: value.count + 1,
-      }),
-      { label: 'increment' },
-    );
-  }
-}
 ```
 
 ---

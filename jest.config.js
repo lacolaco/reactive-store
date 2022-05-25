@@ -10,4 +10,5 @@ module.exports = {
       tsconfig: path.resolve(__dirname, './tsconfig.spec.json'),
     },
   },
+  testPathIgnorePatterns: ['/node_modules/', '/examples/'],
 };
