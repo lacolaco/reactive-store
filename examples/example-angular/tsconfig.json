@@ -18,9 +18,7 @@
       "dom"
     ],
     "paths": {
-      "@lacolaco/reactive-store": [
-        "../../src"
-      ]
+      "@lacolaco/reactive-store": ["../.."]
     }
   },
   "angularCompilerOptions": {

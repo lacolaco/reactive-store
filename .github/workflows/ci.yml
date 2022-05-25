@@ -35,7 +35,9 @@ jobs:
         with:
           node-version-file: .node-version
           cache: yarn
-      - run: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn install --frozen-lockfile
         working-directory: examples/example-angular
       - run: yarn build
         working-directory: examples/example-angular
