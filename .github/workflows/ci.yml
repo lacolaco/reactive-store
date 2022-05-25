@@ -27,7 +27,7 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile
       - run: yarn test:ci
-  build-example-angular:
+  example-angular:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,4 +40,6 @@ jobs:
       - run: yarn install --frozen-lockfile
         working-directory: examples/example-angular
       - run: yarn build
+        working-directory: examples/example-angular
+      - run: yarn test
         working-directory: examples/example-angular

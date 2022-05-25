@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { Store } from '@lacolaco/reactive-store';
 
+@Injectable()
 export class CounterStore extends Store<{ count: number }> {
   readonly count$ = this.select((state) => state.count);
 

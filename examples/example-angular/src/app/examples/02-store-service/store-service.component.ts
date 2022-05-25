@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { CounterStore } from './store';
+import { CounterStore } from './store.service';
 
 @Component({
-  selector: 'app-02-injected-store',
+  selector: 'app-02-store-service',
   template: `
     <div>Count: {{ count$ | async }}</div>
 
@@ -20,7 +20,7 @@ import { CounterStore } from './store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CounterStore],
 })
-export class InjectedStoreComponent {
+export class StoreServiceComponent {
   readonly count$ = this.store.count$;
 
   constructor(private readonly store: CounterStore) {}
