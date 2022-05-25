@@ -22,6 +22,7 @@ $ yarn add rxjs @lacolaco/reactive-store
 
 ## How to Use
 
+- [Stackblitz Demo](https://stackblitz.com/edit/typescript-36dxgn?file=index.ts)
 - [Angular Examples](/examples/example-angular/src/app/examples/)
 
 ### Create a store: `new Store({ initialValue })`
