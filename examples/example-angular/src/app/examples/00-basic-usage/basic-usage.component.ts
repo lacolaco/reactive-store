@@ -1,20 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
 import * as counterStore from './counter.store';
 
 @Component({
-  selector: 'app-counter',
+  selector: 'app-00-basic-usage',
   template: `
-    <div>
-      <div>Count: {{ count$ | async }}</div>
+    <div>Count: {{ count$ | async }}</div>
 
-      <button (click)="onIncrementClick()">Increment</button>
-      <button (click)="onResetClick()">Reset</button>
-    </div>
+    <button (click)="onIncrementClick()">Increment</button>
+    <button (click)="onResetClick()">Reset</button>
   `,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CounterComponent {
+export class BasicUsageComponent {
   readonly count$ = counterStore.count$;
 
   onIncrementClick() {

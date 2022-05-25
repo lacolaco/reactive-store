@@ -1,19 +1,18 @@
+import { Store } from '@lacolaco/reactive-store';
 import produce from 'immer';
 
-import { Store } from '@lacolaco/reactive-store';
-
-const counterStore = new Store({
+const store = new Store({
   initialValue: {
     count: 0,
   },
 });
 
-export const count$ = counterStore.select(state => state.count);
+export const count$ = store.select((state) => state.count);
 
 export const increment = () => {
-  counterStore.update(
-    state =>
-      produce(state, draft => {
+  store.update(
+    (state) =>
+      produce(state, (draft) => {
         draft.count++;
       }),
     {
@@ -23,5 +22,5 @@ export const increment = () => {
 };
 
 export const reset = () => {
-  counterStore.reset();
+  store.reset();
 };
