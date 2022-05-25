@@ -4,7 +4,6 @@ on: [push]
 
 env:
   CI: true
-  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build:
@@ -14,11 +13,29 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - uses: actions/cache@v3
-        with:
-          path: ${YARN_CACHE_FOLDER}
-          key: ${{ runner.os }}-yarn-cache-v1
-      - run: yarn
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn lint
-      - run: yarn test:ci
       - run: yarn build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn test:ci
+  build-example-angular:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn
+        working-directory: examples/example-angular
+      - run: yarn build
+        working-directory: examples/example-angular
