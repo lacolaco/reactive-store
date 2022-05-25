@@ -8,20 +8,21 @@
   "scripts": {
     "test": "jest --watch",
     "test:ci": "jest",
-    "prebuild": "rimraf {dist,esm5,esm2015}",
+    "prebuild": "rimraf {dist,esm}",
     "build": "run-p 'tsc:*'",
     "tsc:main": "tsc -p tsconfig.json --outDir dist",
-    "tsc:esm5": "tsc -p tsconfig.esm5.json --outDir esm5",
-    "tsc:esm2015": "tsc -p tsconfig.esm2015.json --outDir esm2015",
+    "tsc:esm2015": "tsc -p tsconfig.esm.json --outDir esm",
     "format": "prettier --write 'src/**/*.ts'",
     "format:check": "prettier --check 'src/**/*.ts'",
     "lint": "yarn lint:eslint && yarn format:check",
     "lint:eslint": "eslint 'src/**/*.ts'"
   },
   "main": "dist/index.js",
-  "module": "esm5/index.js",
-  "es2015": "esm2015/index.js",
-  "typings": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./esm/index.js"
+  },
+  "types": "dist/index.d.ts",
   "peerDependencies": {
     "rxjs": "^6.0.0 || ^7.0.0"
   },
