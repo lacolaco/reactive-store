@@ -11,10 +11,9 @@ export const count$ = store.select((state) => state.count);
 
 export const increment = () => {
   store.update(
-    (state) =>
-      produce(state, (draft) => {
-        draft.count++;
-      }),
+    produce((draft) => {
+      draft.count++;
+    }),
     {
       label: 'Increment',
     },

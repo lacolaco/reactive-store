@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Store } from '@lacolaco/reactive-store';
+
+import { CounterStore } from './store.service';
 
 @Component({
-  selector: 'app-01-single-file',
+  selector: 'app-02-local-service',
   template: `
     <div>Count: {{ count$ | async }}</div>
 
@@ -17,13 +18,15 @@ import { Store } from '@lacolaco/reactive-store';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [CounterStore],
 })
-export class SingleFileComponent {
-  private readonly store = new Store({ initialValue: { count: 0 } });
-  readonly count$ = this.store.select((state) => state.count);
+export class LocalServiceComponent {
+  readonly count$ = this.store.count$;
+
+  constructor(private readonly store: CounterStore) {}
 
   onIncrementClick() {
-    this.store.update((state) => ({ ...state, count: state.count + 1 }), { label: 'Increment' });
+    this.store.increment();
   }
 
   onResetClick() {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import * as counterStore from './counter.store';
+import { Store } from '@lacolaco/reactive-store';
 
 @Component({
-  selector: 'app-00-basic-usage',
+  selector: 'app-04-base-class',
   template: `
     <div>Count: {{ count$ | async }}</div>
 
@@ -18,14 +18,18 @@ import * as counterStore from './counter.store';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasicUsageComponent {
-  readonly count$ = counterStore.count$;
+export class BaseClassComponent extends Store<{ count: number }> {
+  readonly count$ = this.select((state) => state.count);
+
+  constructor() {
+    super({ initialValue: { count: 0 } });
+  }
 
   onIncrementClick() {
-    counterStore.increment();
+    this.update((state) => ({ ...state, count: state.count + 1 }), { label: 'Increment' });
   }
 
   onResetClick() {
-    counterStore.reset();
+    this.reset();
   }
 }
