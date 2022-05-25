@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@lacolaco/reactive-store';
 
 @Component({
-  selector: 'app-04-stateful-component',
+  selector: 'app-01-class-field',
   template: `
     <div>Count: {{ count$ | async }}</div>
 
@@ -18,18 +18,15 @@ import { Store } from '@lacolaco/reactive-store';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatefulComponent extends Store<{ count: number }> {
-  readonly count$ = this.select((state) => state.count);
-
-  constructor() {
-    super({ initialValue: { count: 0 } });
-  }
+export class ClassFieldComponent {
+  private readonly store = new Store({ initialValue: { count: 0 } });
+  readonly count$ = this.store.select((state) => state.count);
 
   onIncrementClick() {
-    this.update((state) => ({ ...state, count: state.count + 1 }), { label: 'Increment' });
+    this.store.update((state) => ({ ...state, count: state.count + 1 }), { label: 'Increment' });
   }
 
   onResetClick() {
-    this.reset();
+    this.store.reset();
   }
 }

@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { CounterStore } from './store.service';
+import * as counterStore from './counter.store';
 
 @Component({
-  selector: 'app-02-store-service',
+  selector: 'app-00-store-module',
   template: `
     <div>Count: {{ count$ | async }}</div>
 
@@ -18,18 +17,15 @@ import { CounterStore } from './store.service';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CounterStore],
 })
-export class StoreServiceComponent {
-  readonly count$ = this.store.count$;
-
-  constructor(private readonly store: CounterStore) {}
+export class StoreModuleComponent {
+  readonly count$ = counterStore.count$;
 
   onIncrementClick() {
-    this.store.increment();
+    counterStore.increment();
   }
 
   onResetClick() {
-    this.store.reset();
+    counterStore.reset();
   }
 }

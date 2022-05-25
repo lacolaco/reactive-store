@@ -1,11 +1,11 @@
 import { defineCounterSpecs } from '../counter.spec';
-import { BasicUsageComponent } from './basic-usage.component';
+import { StoreModuleComponent } from './store-module.component';
 import * as counterStore from './counter.store';
 
-describe(BasicUsageComponent.name, () => {
+describe(StoreModuleComponent.name, () => {
   beforeEach(() => {
     counterStore.reset();
   });
 
-  defineCounterSpecs(BasicUsageComponent);
+  defineCounterSpecs(StoreModuleComponent);
 });
